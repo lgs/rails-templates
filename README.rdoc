@@ -1,0 +1,6 @@
+
+== Overview
+
+A collection of modular rails templates you can even apply to your existing Rails application using rails:template rake task and supplying LOCATION environment variable : rake rails:template LOCATION=~/template.rb or to quickly generate a new Rails project that uses various gems, plugins, and that even has a customized file layout.
+
+NOTE: use it at your own risk, this code is for my personal learning/testing purposes. 
