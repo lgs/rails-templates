@@ -4,7 +4,9 @@ A collection of modular rails templates you can even apply to your existing Rail
 
      rake rails:template LOCATION=/path/to/template 
 
-or to quickly generate a new Rails project that uses various gems, plugins, and that even has a customized file layout.
+or to quickly generate a new Rails project that uses various gems, plugins, and that even has a customized file layout (... well, not now really but in a futures) :
+
+     rails -m http://github.com/lgs/rails-templates/raw/master/BDD-gems-pack YOUR-NEW-PROJECT-NAME
 
 == NOTE
 
