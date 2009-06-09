@@ -1,11 +1,14 @@
 ######################################################################
 #                                                                    #
+#                       MySQL-DB-creator                             #
+#                                                                    #
 # Create a development/test/prod database for the new rails template #
 # Apply to  a new  Rails application using  rails:template rake task #
 # and supplying LOCATION environment variable :                      #
 #                                                                    #
 #        rake rails:template LOCATION=/path/to/this_template         #
 #                                                                    #
+#                                                   by Luca G. Soave #
 ######################################################################
 
 dbname   = ask("\nCreate a new MySQL DB named :")

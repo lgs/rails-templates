@@ -1,0 +1,77 @@
+############################################################
+#                                                          #
+#                     OOTB-Clearance                       #
+#                                                          #
+# Out of the box  Clearance  Rails authentication tamplate #
+# basically follow the  wiki  installation  guide @ github #
+# http://wiki.github.com/thoughtbot/clearance/installation #
+#                                                          #
+# Build the complete skeleton for a Rails 2.3 application  #
+# using Clearance Auth. This generator will automatically  #
+# build the basics for a Rails authentication with email   #
+# and password.                                            #
+#                                         by Luca G. Soave #
+############################################################
+
+# Add clearance gem to config/environment.rb 
+gem "thoughtbot-clearance",
+  :lib => 'clearance',
+  :source => 'http://gems.github.com'
+ 
+# Vendor the gem 
+rake "gems:install", :sudo => true
+rake "gems:unpack"
+
+# Create a development/test/prod database
+dbname   = ask("\nCreate a new MySQL DB named :")
+mysqlusr = ask("\nwith user :")
+passwd   = ask("\nand password :")
+file 'config/database.yml', <<-YAML
+development:
+  adapter: mysql
+  encoding: utf8
+  reconnect: false
+  database: #{dbname}
+  pool: 5
+  username: #{mysqlusr}
+  password: #{passwd}
+  host: localhost
+test:
+  adapter: mysql
+  encoding: utf8
+  reconnect: false
+  database: #{dbname}_test
+  pool: 5
+  username: #{mysqlusr}
+  password: #{passwd}
+  host: localhost
+production:
+  development
+YAML
+
+# Run the generator
+generate :clearance
+
+# Run the migration
+if yes?("\nCreate and migrate databases now? (yes/no)")
+  rake("db:create:all")
+  rake("db:migrate")
+end
+
+# Define a HOST constant in your environment files. 
+# In config/environments/test.rb and config/environments/development.rb 
+# it can be: HOST = "localhost"
+environment "\r\n\r\n# clearance\r\nHOST = 'localhost'", :env => 'test'
+environment "\r\n\r\n# clearance\r\nHOST = 'localhost'", :env => 'development'
+ 
+# In production.rb it must be the actual host your application is deployed to. 
+# The constant is used by mailers to generate URLs in emails. 
+# In config/environment.rb: DO_NOT_REPLY = "donotreply@example.com"
+domain = ask("\nWhat domain will this application run under?")
+environment "\r\n\r\n# clearance\r\nHOST = \"#{domain}\"", :env => 'production'
+append_file 'config/environment.rb', "\r\n\r\n# clearance\r\nDO_NOT_REPLY = 'donotreply@#{domain}'\r\n"
+
+# Define root_url in config/routes.rb
+generate :controller, "home", "index"
+route "map.root :controller => 'home'"
+
