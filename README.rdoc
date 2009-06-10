@@ -4,7 +4,7 @@ A collection of modular rails templates you can even apply to your existing Rail
 
      rake rails:template LOCATION=http://github.com/lgs/rails-templates/raw/master/BDD-gems-pack
 
-or if you wanna set on the fly mysql test/dev/prod for a starting rails project and you're feed up with mysqladmin, config/database.yaml and companion, you get it :
+or if you wanna set on the fly mysql test/dev/prod for a starting rails project and you're feed up with mysqladmin, config/database.yml and companion, you get it :
 
      rake rails:template LOCATION=http://github.com/lgs/rails-templates/raw/master/MySQL-DB-creator
 
