@@ -1,12 +1,16 @@
 == Overview
 
-A collection of modular rails templates you can even apply to your existing Rails application using rails:template rake task and supplying LOCATION environment variable : 
+A collection of modular rails templates you can even apply to your existing Rails application using rails:template rake task and supplying LOCATION environment variable : "rake rails:template LOCATION=/path/to/template". For example, you'd like to try Behavior Driven Development with an existing Rails app of yours. To add BDD gems stack which fit very well with Cucumber, do it like that : 
 
-     rake rails:template LOCATION=/path/to/template 
+     rake rails:template LOCATION=http://github.com/lgs/rails-templates/raw/master/BDD-gems-pack
+
+or if you wanna set on the fly mysql test/dev/prod for a starting rails project and you're feed up with mysqladmin, config/database.yaml and companion, you get it :
+
+     rake rails:template LOCATION=http://github.com/lgs/rails-templates/raw/master/MySQL-DB-creator
 
 or to quickly generate a new Rails project that uses various gems, plugins, and that even has a customized file layout (... well, not now really but in a futures) :
 
-     rails -m http://github.com/lgs/rails-templates/raw/master/BDD-gems-pack YOUR-NEW-PROJECT-NAME
+     rails -m http://github.com/lgs/rails-templates/raw/master/OOTB-Clearance YOUR-NEW-PROJECT-NAME
 
 == NOTE
 
