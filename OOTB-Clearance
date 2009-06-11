@@ -83,53 +83,49 @@ append_file 'config/environment.rb', "\r\n\r\n# clearance\r\nDO_NOT_REPLY = 'don
 generate :controller, "home", "index"
 route "map.root :controller => 'home'"
 
-# include Clearance::Authentication to ApplicationController
-inside ('app/controllers/') do
-  file "application_controller.rb", %q{
-    class ApplicationController < ActionController::Base
-      include Clearance::Authentication
-      helper :all
-      protect_from_forgery
-      filter_parameter_logging :password
-    end
-  }
-end
+# include Clearance::Authentication into ApplicationController
+file "app/controllers/application_controller.rb", %q{
+  class ApplicationController < ActionController::Base
+    include Clearance::Authentication
+    helper :all
+    protect_from_forgery
+    filter_parameter_logging :password
+  end
+}
 
 # add User model & include Clearance::Authentication
-inside ('app/models/') do
-  file "user.rb", %q{
-    class User < ActiveRecord::Base
-      include Clearance::User
-    end
-  } 
-end
+file "app/models/user.rb", %q{
+  class User < ActiveRecord::Base
+    include Clearance::User
+  end
+} 
 
 #Setup git ignore file
+run %{find . -type d -empty | grep -v "vendor" | grep -v ".git" | grep -v "tmp" | xargs -I xxx touch xxx/.gitignore}
 file '.gitignore', <<-END
-db/development_structure.sql
-public/stylesheets/*.css
-config/database.yml
-db/schema.rb
-db/*.sqlite3
 .DS_Store
 log/*.log
-doc/**/*
 tmp/**/*
-index/*
-tmp/*
+config/database.yml
+db/*.sqlite3
+db/schema.rb
+doc/**/*
 *.swo
 *.swp
 END
-file 'log/.gitignore', <<CODE
-*.log
-CODE
-file 'tmp/.gitignore', <<CODE
-*
-CODE
 
+file 'log/.gitignore', <<-GITIGNORE
+*.log
+GITIGNORE
+file 'tmp/.gitignore', <<-GITIGNORE
+*
+GITIGNORE
+file 'vendor/.gitignore', <<-GITIGNORE
+*
+GITIGNORE
 
 #add to git
 git :init
-git :add => '.'
-git :commit => "-a -m 'Initial commit: OOTB-Clearance rails template applied,\n see http://github.com/lgs/rails-templates/raw/master/OOTB-Clearance'"
+git :add => "."
+git :commit => "-m 'Initial commit. OOTB-Clearance rails template applied: see http://github.com/lgs/rails-templates/raw/master/OOTB-Clearance'"
 
