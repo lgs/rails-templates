@@ -13,7 +13,7 @@
 #                                         by Luca G. Soave #
 ############################################################
 
-# Add clearance gem to config/environment.rb 
+# Add clearance gem to config/environment.rb
 gem "thoughtbot-clearance",
   :lib => 'clearance',
   :source => 'http://gems.github.com'
@@ -58,6 +58,14 @@ if yes?("\nCreate and migrate databases now? (yes/no)")
   rake("db:migrate")
 end
 
+# add BDD gems stack which fit very well with Cucumber
+inside ('') do
+  run "rake rails:template LOCATION=http://github.com/lgs/rails-templates/raw/master/BDD-gems-pack"
+end 
+
+# Run Cucumber feature generator
+generate :clearance_features
+
 # Define a HOST constant in your environment files. 
 # In config/environments/test.rb and config/environments/development.rb 
 # it can be: HOST = "localhost"
@@ -74,4 +82,34 @@ append_file 'config/environment.rb', "\r\n\r\n# clearance\r\nDO_NOT_REPLY = 'don
 # Define root_url in config/routes.rb
 generate :controller, "home", "index"
 route "map.root :controller => 'home'"
+
+
+
+#Setup git ignore file
+file '.gitignore', <<-END
+db/development_structure.sql
+public/stylesheets/*.css
+config/database.yml
+db/schema.rb
+db/*.sqlite3
+.DS_Store
+log/*.log
+doc/**/*
+tmp/**/*
+index/*
+tmp/*
+*.swo
+*.swp
+END
+file 'log/.gitignore', <<CODE
+*.log
+CODE
+file 'tmp/.gitignore', <<CODE
+*
+CODE
+
+#add to git
+git :init
+git :add => '.'
+git :commit => "-a -m 'Initial commit: OOTB-Clearance rails template applied,\n see http://github.com/lgs/rails-templates/raw/master/OOTB-Clearance'"
 

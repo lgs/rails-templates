@@ -14,4 +14,4 @@ or to quickly generate a new Rails project that uses various gems, plugins, and 
 
 == NOTE
 
-     use it at your own risk, this code is for my personal learning/testing purposes. 
+Use it at your own risk, this code is for my personal learning/testing purposes. 
