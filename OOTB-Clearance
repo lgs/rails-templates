@@ -54,11 +54,10 @@ production:
   development
 YAML
 
-# Run the generator
-generate :clearance
-
-# Run Cucumber feature generator
-generate :clearance_features
+# Run the generators
+generate('rspec')
+generate('clearance')
+generate('clearance_features')
 
 # Run the migration
 if yes?("\nCreate and migrate databases now? (yes/no)")
