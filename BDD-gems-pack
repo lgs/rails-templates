@@ -1,12 +1,7 @@
-##########################################
-#                                        #
-#           BDD-gems-pack                #
-#                                        #
-# Add gems to config/enviroments/test.rb #
-# and check they are installed           # 
-#                                        #
-#                       by Luca G. Soave #
-##########################################
+
+# Add BDD gems to config/enviroments/test.rb 
+# and check they are installed            
+
 gem 'rspec',
   :env => 'test'
 gem 'rspec-rails',
