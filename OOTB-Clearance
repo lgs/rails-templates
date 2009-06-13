@@ -1,33 +1,30 @@
-############################################################
-#                                                          #
-#                     OOTB-Clearance                       #
-#                                                          #
-# Out of the box  Clearance  Rails authentication tamplate #
-# basically follow the  wiki  installation  guide @ github #
-# http://wiki.github.com/thoughtbot/clearance/installation #
-#                                                          #
-# Build the complete skeleton for a Rails 2.3 application  #
-# using Clearance Auth. This generator will automatically  #
-# build the basics for a Rails authentication with email   #
-# and password.                                            #
-#                                         by Luca G. Soave #
-############################################################
+#                                                          
+# Out of the box  Clearance  Rails authentication tamplate 
+# basically follow the  wiki  installation  guide @ github 
+# http://wiki.github.com/thoughtbot/clearance/installation 
+#                                                          
+# Build the complete skeleton for a  Rails 2.3 application  
+# using  Clearance Auth. This generator will automatically  
+# build the basics for a  Rails authentication  with email   
+# and password.                                            
 
-# Add clearance gem to config/environment.rb
+# Rails 2.3 installed
+
+#  Add clearance gem to config/environment.rb
 gem "thoughtbot-clearance",
   :lib => 'clearance',
   :source => 'http://gems.github.com'
  
-# Vendor the gem 
+#  Vendor the gem
 rake "gems:install"#, :sudo => true
 rake "gems:unpack"
 
-# add BDD gems stack which fit very well with Cucumber
+#  Add BDD gems stack which fit very well with Cucumber
 inside ('') do
-  run "rake rails:template LOCATION=http://github.com/lgs/rails-templates/raw/master/BDD-gems-pack"
+  # "rake rails:template LOCATION=http://github.com/lgs/rails-templates/raw/master/BDD-gems-pack"
 end 
 
-# Create a development/test/prod database
+#  Create a development/test/prod database
 dbname   = ask("\nCreate a new MySQL DB named :")
 mysqlusr = ask("\nwith user :")
 passwd   = ask("\nand password :")
@@ -54,27 +51,29 @@ production:
   development
 YAML
 
-# Run the generators
+#  Create the db before running clearance generator
+rake("db:create:all")
+
+#  Run the BDD generators
 generate('rspec')
 generate('clearance')
 generate('clearance_features')
 
-# Run the migration
+#  Now run the migration
 if yes?("\nCreate and migrate databases now? (yes/no)")
-  rake("db:create:all")
   rake("db:migrate")
 end
 
-# Define a HOST constant in your environment files. 
-# In config/environments/test.rb and config/environments/development.rb 
-# it can be: HOST = "localhost"
+#  Define a HOST constant in your environment files.
+#  In config/environments/test.rb and config/environments/development.rb
+#  it can be: HOST = "localhost"
 environment "\r\n\r\n# clearance\r\nHOST = 'localhost'", :env => 'test'
 environment "\r\n\r\n# clearance\r\nHOST = 'localhost'", :env => 'development'
  
 # In production.rb it must be the actual host your application is deployed to. 
 # The constant is used by mailers to generate URLs in emails. 
 # In config/environment.rb: DO_NOT_REPLY = "donotreply@example.com"
-domain = ask("\nWhat domain will this application run under?")
+domain = ask("\nWhat domain will this application # under?")
 environment "\r\n\r\n# clearance\r\nHOST = \"#{domain}\"", :env => 'production'
 append_file 'config/environment.rb', "\r\n\r\n# clearance\r\nDO_NOT_REPLY = 'donotreply@#{domain}'\r\n"
 
@@ -82,7 +81,7 @@ append_file 'config/environment.rb', "\r\n\r\n# clearance\r\nDO_NOT_REPLY = 'don
 generate :controller, "home", "index"
 route "map.root :controller => 'home'"
 
-#Setup git ignore file
+# Setup git ignore file
 run %{find . -type d -empty | grep -v "vendor" | grep -v ".git" | grep -v "tmp" | xargs -I xxx touch xxx/.gitignore}
 file '.gitignore', <<-END
 .DS_Store
@@ -106,8 +105,9 @@ file 'vendor/.gitignore', <<-GITIGNORE
 *
 GITIGNORE
 
-#add to git
+# Add to git
 git :init
 git :add => "."
-git :commit => "-m 'Initial commit. OOTB-Clearance rails template applied: see http://github.com/lgs/rails-templates/raw/master/OOTB-Clearance'"
+git :commit => "-m 'Initial commit.'"
+#git :commit => "-m 'OOTB-Clearance rails template applied: see http://github.com/lgs/rails-templates/raw/master/OOTB-Clearance'"
 
