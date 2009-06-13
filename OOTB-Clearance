@@ -1,4 +1,3 @@
-#                                                          
 # Out of the box  Clearance  Rails authentication tamplate 
 # basically follow the  wiki  installation  guide @ github 
 # http://wiki.github.com/thoughtbot/clearance/installation 
@@ -8,23 +7,32 @@
 # build the basics for a  Rails authentication  with email   
 # and password.                                            
 
-# Rails 2.3 installed
+puts "\nRails 2.3 installed"
 
-#  Add clearance gem to config/environment.rb
+# Add to git
+git :init
+git :add => "."
+git :commit => "-m 'Initial commit.'"
+
+puts "\nAdd clearance gem to config/environment.rb"
 gem "thoughtbot-clearance",
   :lib => 'clearance',
   :source => 'http://gems.github.com'
  
-#  Vendor the gem
+puts "\nVendor the gem"
 rake "gems:install"#, :sudo => true
 rake "gems:unpack"
 
-#  Add BDD gems stack which fit very well with Cucumber
+puts "\nAdd BDD gems stack which fit very well with Cucumber"
 inside ('') do
   # "rake rails:template LOCATION=http://github.com/lgs/rails-templates/raw/master/BDD-gems-pack"
 end 
 
-#  Create a development/test/prod database
+# Add to git
+git :add => "."
+git :commit => "-m 'add BDD gems stack which fit very well with Cucumber'"
+
+puts "\nCreate a development/test/prod database"
 dbname   = ask("\nCreate a new MySQL DB named :")
 mysqlusr = ask("\nwith user :")
 passwd   = ask("\nand password :")
@@ -51,37 +59,41 @@ production:
   development
 YAML
 
-#  Create the db before running clearance generator
+puts "\nCreate the db before running clearance generator"
 rake("db:create:all")
 
-#  Run the BDD generators
+puts "\nRun the BDD generators"
 generate('rspec')
 generate('clearance')
 generate('clearance_features')
 
-#  Now run the migration
+puts "\nNow run the migration"
 if yes?("\nCreate and migrate databases now? (yes/no)")
   rake("db:migrate")
 end
 
-#  Define a HOST constant in your environment files.
-#  In config/environments/test.rb and config/environments/development.rb
-#  it can be: HOST = "localhost"
+# Add to git
+git :add => "."
+git :commit => "-m 'running BDD enviroment + Clearance generators'"
+
+puts "\nDefine a HOST constant in your environment files."
+puts "\nIn config/environments/test.rb and config/environments/development.rb"
+puts "\nit can be: HOST = "localhost""
 environment "\r\n\r\n# clearance\r\nHOST = 'localhost'", :env => 'test'
 environment "\r\n\r\n# clearance\r\nHOST = 'localhost'", :env => 'development'
  
-# In production.rb it must be the actual host your application is deployed to. 
-# The constant is used by mailers to generate URLs in emails. 
-# In config/environment.rb: DO_NOT_REPLY = "donotreply@example.com"
+puts "\nIn production.rb it must be the actual host your application is deployed to."
+puts "\nThe constant is used by mailers to generate URLs in emails." 
+puts "\nIn config/environment.rb: DO_NOT_REPLY = "donotreply@example.com""
 domain = ask("\nWhat domain will this application # under?")
 environment "\r\n\r\n# clearance\r\nHOST = \"#{domain}\"", :env => 'production'
 append_file 'config/environment.rb', "\r\n\r\n# clearance\r\nDO_NOT_REPLY = 'donotreply@#{domain}'\r\n"
 
-# Define root_url in config/routes.rb
+puts "\nDefine root_url in config/routes.rb"
 generate :controller, "home", "index"
 route "map.root :controller => 'home'"
 
-# Setup git ignore file
+puts "\nSetup git ignore file"
 run %{find . -type d -empty | grep -v "vendor" | grep -v ".git" | grep -v "tmp" | xargs -I xxx touch xxx/.gitignore}
 file '.gitignore', <<-END
 .DS_Store
@@ -105,9 +117,7 @@ file 'vendor/.gitignore', <<-GITIGNORE
 *
 GITIGNORE
 
-# Add to git
-git :init
+puts "\nAdd to git"
 git :add => "."
-git :commit => "-m 'Initial commit.'"
-#git :commit => "-m 'OOTB-Clearance rails template applied: see http://github.com/lgs/rails-templates/raw/master/OOTB-Clearance'"
+git :commit => "-a -m 'OOTB-Clearance rails template applied: see http://github.com/lgs/rails-templates/tree/master'"
 
