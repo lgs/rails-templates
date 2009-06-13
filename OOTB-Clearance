@@ -82,23 +82,6 @@ append_file 'config/environment.rb', "\r\n\r\n# clearance\r\nDO_NOT_REPLY = 'don
 generate :controller, "home", "index"
 route "map.root :controller => 'home'"
 
-# include Clearance::Authentication into ApplicationController
-file "app/controllers/application_controller.rb", %q{
-  class ApplicationController < ActionController::Base
-    include Clearance::Authentication
-    helper :all
-    protect_from_forgery
-    filter_parameter_logging :password
-  end
-}
-
-# add User model & include Clearance::Authentication
-file "app/models/user.rb", %q{
-  class User < ActiveRecord::Base
-    include Clearance::User
-  end
-} 
-
 #Setup git ignore file
 run %{find . -type d -empty | grep -v "vendor" | grep -v ".git" | grep -v "tmp" | xargs -I xxx touch xxx/.gitignore}
 file '.gitignore', <<-END
