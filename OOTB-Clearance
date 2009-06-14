@@ -23,18 +23,16 @@ puts "\nVendor the gem"
 rake "gems:install", :sudo => true
 rake "gems:unpack"
 
-puts "\nAdd nokogiri gem but ..."
+puts "\nAdd nokogiri but don’t vendor the gem"
+puts "due to its native extensions than install normally on your machine"
 gem "nokogiri",
   :lib => 'nokogiri',
   :source => 'http://gems.github.com'
- 
-puts "... don’t vendor nokogiri due to its native extensions"
-puts "than install normally on your machine"
 rake "gems:install", :sudo => true
 
 puts "\nAdd BDD gems stack which fit very well with Cucumber"
 inside ('') do
-  # "rake rails:template LOCATION=http://github.com/lgs/rails-templates/raw/master/BDD-gems-pack"
+  "rake rails:template LOCATION=http://github.com/lgs/rails-templates/raw/master/BDD-gems-pack"
 end 
 
 # Add to git
@@ -75,6 +73,9 @@ puts "\nRun the BDD generators"
 generate('rspec')
 generate('clearance')
 generate('cucumber')
+put "......... workaround to avoid stopping the rails-template output due to"
+put "overlapping write file between cucumber & clearance_features generators:"
+run "sudo rm ./features/support/paths.rb"
 generate('clearance_features')
 
 puts "\nNow run the migration"
