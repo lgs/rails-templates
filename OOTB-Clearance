@@ -73,8 +73,8 @@ puts "\nRun the BDD generators"
 generate('rspec')
 generate('clearance')
 generate('cucumber')
-put "......... workaround to avoid stopping the rails-template output due to"
-put "overlapping write file between cucumber & clearance_features generators:"
+puts "......... workaround to avoid stopping the rails-template output due to"
+puts "overlapping write file between cucumber & clearance_features generators:"
 run "sudo rm ./features/support/paths.rb"
 generate('clearance_features')
 
