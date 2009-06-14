@@ -24,12 +24,12 @@ rake "gems:install", :sudo => true
 rake "gems:unpack"
 
 puts "\nAdd nokogiri gem but ..."
-gem "thoughtbot-clearance",
-  :lib => 'clearance',
+gem "nokogiri",
+  :lib => 'nokogiri',
   :source => 'http://gems.github.com'
  
-puts "don’t vendor nokogiri due to its native extensions"
-puts "that install it normally on your machine"
+puts "... don’t vendor nokogiri due to its native extensions"
+puts "than install normally on your machine"
 rake "gems:install", :sudo => true
 
 puts "\nAdd BDD gems stack which fit very well with Cucumber"
@@ -87,14 +87,14 @@ git :add => "."
 git :commit => "-m 'running BDD enviroment + Clearance generators'"
 
 puts "\nDefine a HOST constant in your environment files."
-puts "\nIn config/environments/test.rb and config/environments/development.rb"
-puts "\nit can be: HOST = localhost"
+puts "In config/environments/test.rb and config/environments/development.rb"
+puts "it can be: HOST = localhost"
 environment "\r\n\r\n# clearance\r\nHOST = 'localhost'", :env => 'test'
 environment "\r\n\r\n# clearance\r\nHOST = 'localhost'", :env => 'development'
  
 puts "\nIn production.rb it must be the actual host your application is deployed to."
-puts "\nThe constant is used by mailers to generate URLs in emails." 
-puts "\nIn config/environment.rb: DO_NOT_REPLY = donotreply@example.com"
+puts "The constant is used by mailers to generate URLs in emails." 
+puts "In config/environment.rb: DO_NOT_REPLY = donotreply@example.com"
 domain = ask("\nWhat domain will this application # under?")
 environment "\r\n\r\n# clearance\r\nHOST = \"#{domain}\"", :env => 'production'
 append_file 'config/environment.rb', "\r\n\r\n# clearance\r\nDO_NOT_REPLY = 'donotreply@#{domain}'\r\n"
@@ -130,4 +130,3 @@ GITIGNORE
 puts "\nAdd to git"
 git :add => "."
 git :commit => "-a -m 'OOTB-Clearance rails template applied: see http://github.com/lgs/rails-templates/tree/master'"
-
