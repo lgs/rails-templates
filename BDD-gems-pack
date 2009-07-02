@@ -12,10 +12,12 @@ gem 'cucumber',
   :env => 'test'
 gem 'mocha',
   :env => 'test'
-gem 'thoughtbot-factory_girl',
-  :lib     => 'factory_girl',
-  :source  => "http://gems.github.com",
-  :env => 'test'
+
+#gem 'thoughtbot-factory_girl',
+#  :lib     => 'factory_girl',
+#  :source  => "http://gems.github.com",
+#  :env => 'test'
+
 gem 'thoughtbot-shoulda',
   :lib => 'shoulda',
   :source => 'http://gems.github.com',
@@ -24,3 +26,5 @@ rake "gems:install",
   :sudo => true, 
   :env => 'test'
 
+run "gem sources -a http://gems.github.com"
+run "sudo gem install thoughtbot-factory_girl"
