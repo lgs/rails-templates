@@ -5,8 +5,8 @@
 # Build the complete skeleton for a  Rails 2.3 application  
 # using  Clearance Auth. This generator will automatically  
 # build the basics for a  Rails authentication  with email   
-# and password.                                            
-
+# and password.      
+                                      
 puts "\nRails 2.3 installed"
 
 # Add to git
@@ -26,8 +26,7 @@ rake "gems:unpack"
 puts "\nAdd nokogiri but don’t vendor the gem"
 puts "due to its native extensions than install normally on your machine"
 gem "nokogiri",
-  :lib => 'nokogiri',
-  :source => 'http://gems.github.com'
+  :lib => 'nokogiri'
 rake "gems:install", :sudo => true
 
 puts "\nAdd BDD gems stack which fit very well with Cucumber"
