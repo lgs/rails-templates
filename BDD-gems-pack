@@ -16,6 +16,7 @@ gem 'thoughtbot-shoulda',
   :lib => 'shoulda',
   :source => 'http://gems.github.com',
   :env => 'test'
+
 rake "gems:install", 
   :sudo => true, 
   :env => 'test'
@@ -23,5 +24,8 @@ rake "gems:install",
 gem 'thoughtbot-factory_girl',
   :lib     => 'factory_girl',
   :source  => 'http://gems.github.com'
-rake "gems:install", 
-  :sudo => true
+
+puts "\nVendor the factory_girl gem"
+rake "gems:install", :sudo => true
+rake "gems:unpack"
+
