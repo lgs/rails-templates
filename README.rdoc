@@ -18,10 +18,12 @@ Use it at your own risk, this code is for my personal learning & testing purpose
 
  Actually tested with Ubuntu 9.04 Desktop Edition. To run on systems without sudo and other UNIX like, endemic commands:
 
-  - please fork github repo http://github.com/lgs/rails-templates/tree/master
-  - git clone git@github.com:YOUR-NEW-GITHUB-REPO/rails-templates.git
-  - find the lines "run" inside the template you'll use and sobstitute the UNIX like commands with something works with 
-    the OS you use. 
+  - fork the github repo http://github.com/lgs/rails-templates/tree/master
+  - find the lines "run" inside the template you'll use and sobstitute the UNIX commands with something similar 
+    which works on your OS system. 
 
-Don't forget tu push back your own origin master :-)
-                               bye Luca G. Soave
+
+bye Luca G. Soave
+
+
+                                                                   
