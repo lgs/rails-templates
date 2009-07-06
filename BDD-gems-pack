@@ -1,8 +1,6 @@
 # Add BDD gems to config/enviroments/test.rb 
 # and check they are installed   
 
-run "gem sources -a http://gems.github.com"         
-
 gem 'rspec',
   :env => 'test'
 gem 'rspec-rails',
@@ -22,7 +20,8 @@ gem 'thoughtbot-shoulda',
 gem 'thoughtbot-factory_girl',
   :lib     => 'factory_girl',
   :source  => 'http://gems.github.com', 
-  :version => '1.2.1'
+  :version => '1.2.1',
+  :env => 'test'
 
 rake "gems:install", 
   :sudo => true, 
