@@ -19,8 +19,9 @@ Use it at your own risk, this code is for my personal learning & testing purpose
  Actually tested with Ubuntu 9.04 Desktop Edition. To run on systems without sudo and other UNIX like, endemic commands:
 
   - fork the github repo http://github.com/lgs/rails-templates/tree/master
-  - find the lines "run" inside the template you'll use and sobstitute the UNIX commands with something similar 
-    which works on your OS system. 
+  - find the "run" lines and sobstitute the UNIX commands with something similar which works on your OS system. 
+  - if you do not have sudo command (win & others nix), remove it from rake "gems:install", :sudo => true 
+   (let rake "gems:install" only)
 
 
 bye Luca G. Soave
