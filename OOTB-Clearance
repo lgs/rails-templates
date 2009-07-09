@@ -1,12 +1,12 @@
-# Out of the box  Clearance  Rails authentication tamplate 
-# basically follow the  wiki  installation  guide @ github 
-# http://wiki.github.com/thoughtbot/clearance/installation 
-#                                                          
-# Build the complete skeleton for a  Rails 2.3 application  
-# using  Clearance Auth. This generator will automatically  
-# build the basics for a  Rails authentication  with email   
-# and password.      
-                                      
+# Out of the box  Clearance authentication tamplate  which
+# basically follow the  wiki  installation  guide @ github
+# http://wiki.github.com/thoughtbot/clearance/installation
+#
+# Build the complete skeleton for a  Rails 2.3 application
+# using  Clearance Auth. This generator will automatically
+# build the basics for a  Rails authentication  with email
+# and password.
+
 puts "\nRails 2.3 installed"
 
 # Add to git
@@ -14,25 +14,34 @@ git :init
 git :add => "."
 git :commit => "-m 'Initial commit.'"
 
-puts "\nAdd clearance gem to config/environment.rb"
+puts "\nAdd clearance and others thoughtbot's gems to config/environment.rb"
 gem "thoughtbot-clearance",
   :lib => 'clearance',
   :source => 'http://gems.github.com'
- 
-puts "\nVendor the gem"
+gem 'thoughtbot-factory_girl',
+  :lib => 'factory_girl',
+  :source => 'http://gems.github.com'
+gem "thoughtbot-shoulda",
+  :lib => "shoulda",
+  :source => 'http://gems.github.com'
+
 rake "gems:install", :sudo => true
+
+puts "\nAdd BDD gems stack for Cucumber"
+gem 'webrat',
+  :env => 'test'
+gem 'cucumber',
+  :env => 'test'
+
+puts "\nVendor thoughtbot's gems"
+rake "gems:install", :sudo => true, :env => 'test'
 rake "gems:unpack"
 
-puts "\nAdd nokogiri but don’t vendor the gem"
+puts "\nAdd nokogiri but don't vendor the gem"
 puts "due to its native extensions than install normally on your machine"
 gem "nokogiri",
   :lib => 'nokogiri'
 rake "gems:install", :sudo => true
-
-puts "\nAdd BDD gems stack which fit very well with Cucumber"
-inside ('') do
-  "rake rails:template LOCATION=http://github.com/lgs/rails-templates/raw/master/BDD-gems-pack"
-end 
 
 # Add to git
 git :add => "."
@@ -69,11 +78,12 @@ puts "\nCreate the db before running clearance generator"
 rake("db:create:all")
 
 puts "\nRun the BDD generators"
-generate('rspec')
 generate('clearance')
 generate('cucumber')
-puts "\n......... workaround to avoid stopping the rails-template output due to"
-puts "overlapping write file between cucumber & clearance_features generators:\n"
+
+puts "\r\n......... workaround to avoid stopping the rails-template output due to"
+puts "overlapping write file between cucumber & clearance_features generators:\r\n"
+
 run "sudo rm ./features/support/paths.rb"
 generate('clearance_features')
 
@@ -91,9 +101,9 @@ puts "In config/environments/test.rb and config/environments/development.rb"
 puts "it can be: HOST = localhost"
 environment "\r\n\r\n# clearance\r\nHOST = 'localhost'", :env => 'test'
 environment "\r\n\r\n# clearance\r\nHOST = 'localhost'", :env => 'development'
- 
+
 puts "\nIn production.rb it must be the actual host your application is deployed to."
-puts "The constant is used by mailers to generate URLs in emails." 
+puts "The constant is used by mailers to generate URLs in emails."
 puts "In config/environment.rb: DO_NOT_REPLY = donotreply@example.com"
 domain = ask("\nWhat domain will this application # under?")
 environment "\r\n\r\n# clearance\r\nHOST = \"#{domain}\"", :env => 'production'
@@ -127,9 +137,20 @@ file 'vendor/.gitignore', <<-GITIGNORE
 *puts "\nAdd to git"
 GITIGNORE
 
-puts "\nAdd ROUTES: the default routing map doc" 
+puts "\nAdd ROUTES: the default routing map doc"
 run "rake routes >> ROUTES"
+run "cat ROUTES >> app/views/home/index.html.erb"
+
+run "rm public/index.html"
 
 puts "\nAdd to git"
 git :add => "."
 git :commit => "-a -m 'OOTB-Clearance rails template applied: see http://github.com/lgs/rails-templates/tree/master'"
+
+puts "\r\n\Now config ActionMailer::Base adding the following lines to 'config/environment.rb':\r\n"
+
+puts "  config.action_mailer.raise_delivery_errors = true"
+puts "  config.action_mailer.perform_deliveries = true"
+puts "  config.action_mailer.default_charset = 'utf-8'"
+puts "  config.action_mailer.delivery_method = :sendmail\r\n"
+
