@@ -150,6 +150,12 @@ run "cat ROUTES >> app/views/home/index.html.erb"
 
 run "rm public/index.html"
 
+puts "\nCreate a new drastic-dark theme"
+plugin 'web-app-theme', :git => 'git://github.com/pilu/web-app-theme.git'
+title = ask("\nCreate a title named :")
+generate("theme application --app_name='#{title}' --theme='drastic-dark'")
+#generate('themed home --layout=application --with_will_paginate')
+
 puts "\nAdd to git"
 git :add => "."
 git :commit => "-a -m 'OOTB-Clearance rails template applied: see http://github.com/lgs/rails-templates/tree/master'"
@@ -161,3 +167,4 @@ puts "  config.action_mailer.perform_deliveries = true"
 puts "  config.action_mailer.default_charset = 'utf-8'"
 puts "  config.action_mailer.delivery_method = :sendmail\r\n"
 
+puts "\nFor more info about web-app-theme configuration, please have a look at:   \n    http://gravityblast.com/2009/07/30/2-minutes-admin-layout-with-rails-and-the-web-app-theme-generator/"
