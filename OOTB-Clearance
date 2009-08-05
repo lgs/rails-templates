@@ -56,7 +56,7 @@ development:
   adapter: mysql
   encoding: utf8
   reconnect: false
-  database: #{dbname}
+  database: #{dbname}_dev
   pool: 5
   username: #{mysqlusr}
   password: #{passwd}
@@ -71,7 +71,14 @@ test:
   password: #{passwd}
   host: localhost
 production:
-  development
+  adapter: mysql
+  encoding: utf8
+  reconnect: false
+  database: #{dbname}
+  pool: 5
+  username: #{mysqlusr}
+  password: #{passwd}
+  host: localhost
 YAML
 
 puts "\nCreate the db before running clearance generator"
@@ -88,7 +95,7 @@ run "sudo rm ./features/support/paths.rb"
 generate('clearance_features')
 
 puts "\nNow run the migration"
-if yes?("\nCreate and migrate databases now? (yes/no)")
+if yes?("\nCreate and migrate databases now? (y/n)")
   rake("db:migrate")
 end
 
