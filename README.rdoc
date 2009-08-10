@@ -23,7 +23,3 @@ Use it at your own risk, this code is for my personal learning & testing purpose
   - if you do not have sudo command (win & others nix), remove it from rake "gems:install", :sudo => true 
    (let rake "gems:install" only)
 
-bye Luca G. Soave
-
-
-                                                                   

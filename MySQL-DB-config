@@ -29,7 +29,14 @@ test:
   password: #{passwd}
   host: localhost
 production:
-  development
+  adapter: mysql
+  encoding: utf8
+  reconnect: false
+  database: #{dbname}
+  pool: 5
+  username: #{mysqlusr}
+  password: #{passwd}
+  host: localhost
 YAML
 
 # Run the migration
