@@ -5,13 +5,17 @@ A collection of rails application templates you can even apply to your existing 
 
 = Examples :
 
-* set on the fly mysql test/dev/prod for a starting rails project: 
+* setup and migrate on the fly mysql test/dev/prod db: 
 
-  rake rails:template LOCATION=http://github.com/lgs/rails-templates/raw/master/MySQL-DB-creator
+     rake rails:template LOCATION=http://github.com/lgs/rails-templates/raw/master/MySQL-DB-config
 
 * quickly generate a new Rails project based on Clearance authentication and web-app-theme generator:
 
-     rails -m http://github.com/lgs/rails-templates/raw/master/OOTB-Clearance YOUR-NEW-PROJECT-NAME
+     rails -m http://github.com/lgs/rails-templates/raw/master/OOTB-Clearance NEW-PROJECT-NAME
+
+* install Blueprint-CSS
+
+     rake rails:template LOCATION=http://github.com/lgs/rails-templates/raw/master/Blueprint-CSS-layout
 
 == NOTE
 

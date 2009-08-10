@@ -1,6 +1,0 @@
-
-
-log 'Install Blueprint-CSS'
-load_template("http://github.com/tsechingho/authlogic_bundle/raw/master/templates/git_init.rb")
-
-
