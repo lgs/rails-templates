@@ -40,7 +40,7 @@ production:
 YAML
 
 # Run the migration
-if yes?("\nCreate and migrate databases now? (yes/no)")
+if yes?("\nCreate and migrate databases now? (y/n)")
   # run "mysqladmin -u #{mysqlusr} create #{dbname}" -p #{passwd}
   # run "mysqladmin -u #{mysqlusr} create #{dbname}_test" -p #{passwd}
   rake("db:create:all")

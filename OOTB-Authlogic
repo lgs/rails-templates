@@ -1,10 +1,3 @@
-# blueprint/css
-#run "curl -L http://github.com/joshuaclayton/blueprint-css/tarball/master > public/stylesheets/blueprint.tar && tar xf public/stylesheets/blueprint.tar"
-#run 'rm public/stylesheets/blueprint.tar'
-#blueprint_dir = Dir.entries('.').grep(/blueprint/).first
-#run "mv #{blueprint_dir}/blueprint/*.css public/stylesheets"
-#run "rm -rf #{blueprint_dir}"
-
 
 log 'Install and setup authlogic with password resets'
 run "curl -L http://github.com/lgs/authlogic_example/tarball/with-password-resets > tmp/authlogic.tar && tar xf tmp/authlogic.tar"
@@ -13,7 +6,8 @@ authlogic_dir = Dir.entries('.').grep(/authlogic.*/).first
 run "cp -rp #{authlogic_dir}/* ./"
 run "rm -rf #{authlogic_dir}"
 
+log 'Install Blueprint-CSS'
+load_template("http://github.com/lgs/rails-templates/raw/master/Blueprint-CSS-layout")
 
-#log 'Install Blueprint-CSS'
-#load_template("http://github.com/tsechingho/authlogic_bundle/raw/master/templates/git_init.rb")
-
+log 'Setup and migrate a mysql db'
+load_template("http://github.com/lgs/rails-templates/raw/master/MySQL-DB-config")
