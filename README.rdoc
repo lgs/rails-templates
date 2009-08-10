@@ -1,10 +1,9 @@
-=== Overview
+= Overview
 
 A collection of rails application templates you can even apply to your existing Rails application using rails:template rake task and supplying LOCATION environment variable : "rake rails:template LOCATION=/path/to/template". 
 
 
-= Examples :
-
+== Examples :
 
 
 * quickly generate a new Rails project based on Authlogic authentication and Blueprint-CSS layout:
@@ -23,7 +22,7 @@ A collection of rails application templates you can even apply to your existing 
 
      rake rails:template LOCATION=http://github.com/lgs/rails-templates/raw/master/Blueprint-CSS-layout
 
-= NOTE
+== NOTE
 
 Use it at your own risk, this code is for my personal learning & testing purposes. 
 
@@ -34,12 +33,17 @@ Use it at your own risk, this code is for my personal learning & testing purpose
    (let rake "gems:install" only)
 
 
-= Author:
+== Author:
 
-  Luca G. Soave
-  http://tinyurl.com/mxjz9p
-  http://twitter.com/lgswitter
-  http://delicious.com/lgsicious
-  http://www.linkedin.com/pub/luca-g-soave/3/196/993
+  Luca G. Soave : luca [.] soave [@] gmail [.] com
 
-= 
+  link:http://tinyurl.com/mxjz9p
+  link:http://friendfeed.com/lgsff
+  link:http://twitter.com/lgswitter
+  link:http://delicious.com/lgsicious
+  link:http://www.linkedin.com/pub/luca-g-soave/3/196/993
+
+== License
+
+Copyright (c) 2009 Luca G. Soave, released under the MIT license
+
