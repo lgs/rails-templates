@@ -1,4 +1,4 @@
-Overview
+=== Overview
 
 A collection of rails application templates you can even apply to your existing Rails application using rails:template rake task and supplying LOCATION environment variable : "rake rails:template LOCATION=/path/to/template". 
 

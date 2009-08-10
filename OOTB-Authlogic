@@ -5,10 +5,7 @@ run 'rm tmp/authlogic.tar'
 authlogic_dir = Dir.entries('.').grep(/authlogic.*/).first
 run "cp -rp #{authlogic_dir}/* ./"
 run "rm -rf #{authlogic_dir}"
-
-#moved into the authlogic tarball
-#log 'Install Blueprint-CSS'
-#load_template("http://github.com/lgs/rails-templates/raw/master/Blueprint-CSS-layout")
+run 'rm public/index.html'
 
 log 'Setup and migrate a mysql db'
 load_template("http://github.com/lgs/rails-templates/raw/master/MySQL-DB-config")
