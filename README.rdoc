@@ -1,14 +1,15 @@
 == Overview
 
-A collection of modular rails templates you can even apply to your existing Rails application using rails:template rake task and supplying LOCATION environment variable : "rake rails:template LOCATION=/path/to/template". For example, you'd like to try Behavior Driven Development with an existing Rails app of yours. To add BDD gems stack which fit very well with Cucumber, do it like that : 
+A collection of rails application templates you can even apply to your existing Rails application using rails:template rake task and supplying LOCATION environment variable : "rake rails:template LOCATION=/path/to/template". 
 
-     rake rails:template LOCATION=http://github.com/lgs/rails-templates/raw/master/BDD-gems-pack
 
-or if you wanna set on the fly mysql test/dev/prod for a starting rails project and you're feed up with mysqladmin, config/database.yml and companion, you get it :
+= Examples :
 
-     rake rails:template LOCATION=http://github.com/lgs/rails-templates/raw/master/MySQL-DB-creator
+* set on the fly mysql test/dev/prod for a starting rails project: 
 
-or to quickly generate a new Rails project that uses various gems, plugins, and that even has a customized file layout (... well, not now really but in a futures) :
+  rake rails:template LOCATION=http://github.com/lgs/rails-templates/raw/master/MySQL-DB-creator
+
+* quickly generate a new Rails project based on Clearance authentication and web-app-theme generator:
 
      rails -m http://github.com/lgs/rails-templates/raw/master/OOTB-Clearance YOUR-NEW-PROJECT-NAME
 
@@ -18,11 +19,9 @@ Use it at your own risk, this code is for my personal learning & testing purpose
 
  Actually tested with Ubuntu 9.04 Desktop Edition. To run on systems without sudo and other UNIX like, endemic commands:
 
-  - fork the github repo http://github.com/lgs/rails-templates/tree/master
   - find the "run" lines and sobstitute the UNIX commands with something similar which works on your OS system. 
   - if you do not have sudo command (win & others nix), remove it from rake "gems:install", :sudo => true 
    (let rake "gems:install" only)
-
 
 bye Luca G. Soave
 
