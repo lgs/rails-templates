@@ -33,13 +33,13 @@ Use it at your own risk, this code is for my personal learning & testing purpose
 
 == Author:
 
-  Luca G. Soave : luca[.]soave[@]gmail[.]com
+Luca G. Soave : 
 
-  {Google Reader starred items}[http://tinyurl.com/mxjz9p]
-  {friendfeed.com/lgsff}[http://friendfeed.com/lgsff]
-  {twitter.com/lgswitter}[http://twitter.com/lgswitter]
-  {delicious.com/lgsicious}[http://delicious.com/lgsicious]
-  {linkedin.com}[http://www.linkedin.com/pub/luca-g-soave/3/196/993]
+{Google Reader starred items}[http://tinyurl.com/mxjz9p]
+{friendfeed.com/lgsff}[http://friendfeed.com/lgsff]
+{twitter.com/lgswitter}[http://twitter.com/lgswitter]
+{delicious.com/lgsicious}[http://delicious.com/lgsicious]
+{linkedin.com}[http://www.linkedin.com/pub/luca-g-soave/3/196/993]
 
 == License
 
