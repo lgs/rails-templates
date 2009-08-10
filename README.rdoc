@@ -1,26 +1,24 @@
 = Overview
 
-A collection of rails application templates you can even apply to your existing Rails application using rails:template rake task and supplying LOCATION environment variable : "rake rails:template LOCATION=/path/to/template". 
-
+A collection of rails application templates for creating out of the box, new rails app from scratch, or even apply apply to your existing Rails application using rails:template rake task and supplying LOCATION environment variable : "rake rails:template LOCATION=/path/to/template" 
 
 == Examples :
-
-
-* quickly generate a new Rails project based on Authlogic authentication and Blueprint-CSS layout:
-
-     (work in progress) rails -m http://github.com/lgs/rails-templates/raw/master/OOTB-Authlogic NEW-PROJECT-NAME
 
 * setup and migrate on the fly mysql test/dev/prod db: 
 
      rake rails:template LOCATION=http://github.com/lgs/rails-templates/raw/master/MySQL-DB-config
 
-* quickly generate a new Rails project based on Clearance authentication and web-app-theme generator:
-
-     (work in progress) rails -m http://github.com/lgs/rails-templates/raw/master/OOTB-Clearance NEW-PROJECT-NAME
-
 * install Blueprint-CSS
 
      rake rails:template LOCATION=http://github.com/lgs/rails-templates/raw/master/Blueprint-CSS-layout
+
+* quickly generate a new Rails project based on Authlogic authentication and Blueprint-CSS layout:
+
+     (work in progress) rails -m http://github.com/lgs/rails-templates/raw/master/OOTB-Authlogic NEW-PROJECT-NAME
+
+* quickly generate a new Rails project based on Clearance authentication and web-app-theme generator:
+
+     (work in progress) rails -m http://github.com/lgs/rails-templates/raw/master/OOTB-Clearance NEW-PROJECT-NAME
 
 == NOTE
 
@@ -35,13 +33,13 @@ Use it at your own risk, this code is for my personal learning & testing purpose
 
 == Author:
 
-  Luca G. Soave : luca [.] soave [@] gmail [.] com
+  Luca G. Soave : luca[.]soave[@]gmail[.]com
 
-  link:http://tinyurl.com/mxjz9p
-  link:http://friendfeed.com/lgsff
-  link:http://twitter.com/lgswitter
-  link:http://delicious.com/lgsicious
-  link:http://www.linkedin.com/pub/luca-g-soave/3/196/993
+  {Google Reader starred items}[http://tinyurl.com/mxjz9p]
+  {friendfeed.com/lgsff}[http://friendfeed.com/lgsff]
+  {twitter.com/lgswitter}[http://twitter.com/lgswitter]
+  {delicious.com/lgsicious}[http://delicious.com/lgsicious]
+  {linkedin.com}[http://www.linkedin.com/pub/luca-g-soave/3/196/993]
 
 == License
 
