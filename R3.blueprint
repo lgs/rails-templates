@@ -12,8 +12,6 @@ log 'set My Gemfile'
       # Bundle the extra gems:
       gem 'devise', '1.1.rc1'
       gem 'sqlite3-ruby', :require => 'sqlite3'
-      gem 'haml', '3.0.0.beta.3', :git => 'git://github.com/nex3/haml.git'
-      gem 'compass', '0.10.0.rc3', :git => 'git://github.com/chriseppstein/compass.git'
 
     GEMFILE
   end
@@ -46,24 +44,10 @@ File.open('config/initializers/mailer.rb', "w") do |f|
   ACTIONMAILER
 end
 
-# absolutly put compass after devise setup
-log 'initialize compass & haml'
-    run('haml --rails .')
-    run('compass --rails -f blueprint . --css-dir=public/stylesheets/compiled --sass-dir=app/stylesheets')
-    #run "rm config/initializers/compass.rb"
+log 'apply Blueprint-CSS'
+  #rake rails:template LOCATION=http://github.com/lgs/rails-templates/raw/master/Blueprint-CSS-layout
+  apply 'http://github.com/lgs/rails-templates/raw/master/Blueprint-CSS-layout'
 
-    run "rm config/initializers/compass.config"
-    #File.open('config/initializers/compass.config', "w") do |f|
-    #  f.puts <<-COMPASS
-    file 'config/initializers/compass.rb', <<-COMPASS
-      require 'compass'
-        # If you have any compass plugins, require them here.
-        #Compass.configuration.parse(File.join(RAILS_ROOT, "config", "compass.config"))
-        Compass.add_project_configuration("config/compass.config")
-        Compass.configuration.environment = RAILS_ENV.to_sym
-        Compass.configure_sass_plugin!
-      COMPASS
-    #end
 
 log 'Your Body HTML is in app/views/layouts/application.html.erb'
 File.open('app/views/layouts/application.html.erb', "w") do |f|
@@ -76,7 +60,9 @@ File.open('app/views/layouts/application.html.erb', "w") do |f|
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" type="text/javascript"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js" type="text/javascript"></script>
-  <%= stylesheet_link_tag 'compiled/main' %>
+  <%= stylesheet_link_tag('screen', :media => "all") %>
+  <%= stylesheet_link_tag('print', :media => "print") %>
+  <%= stylesheet_link_tag(:all, :cache => true) %>
   </head>
   <body>
      <%= yield %>
@@ -116,22 +102,21 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent est leo, cons
   INDEX
 end
 
-log 'Your Grid CSS is in public/stylesheets/compiled/main.css'
-File.open('public/stylesheets/compiled/main.css', "w") do |f|
-  f.puts <<-CSS
+#log 'Your Grid CSS is in public/stylesheets/compiled/main.css'
+#File.open('public/stylesheets/compiled/main.css', "w") do |f|
+#  f.puts <<-CSS
+#
+#.column { float: left; margin-right: 10px; }
+#.last { margin-right: 0; }
+#.span-19 { width: 750px; }
+#.span-3 { width: 110px; }
+#.span-24 { width: 950px; margin: 0; }
+##header { width: 950px; margin: 0 auto; color: eee; }
+##logo { float: left; margin-right: 10px; width: 190px; }
+##wrapper { width: 950px; margin: 0 auto; }
+##content { float: left; margin-right: 10px; width: 710px; color: grey; }
+##footer { width: 950px; margin: 0 auto; color: eee; }
+#
+#  CSS
+#end
 
-.column { float: left; margin-right: 10px; }
-.last { margin-right: 0; }
-.span-19 { width: 750px; }
-.span-3 { width: 110px; }
-.span-24 { width: 950px; margin: 0; }
-#header { width: 950px; margin: 0 auto; color: eee; }
-#logo { float: left; margin-right: 10px; width: 190px; }
-#wrapper { width: 950px; margin: 0 auto; }
-#content { float: left; margin-right: 10px; width: 710px; color: grey; }
-#footer { width: 950px; margin: 0 auto; color: eee; }
-
-  CSS
-end
-
-run 'compass'
