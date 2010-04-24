@@ -1,0 +1,23 @@
+log 'Rails 3.0.0.beta3 set gems in Gemfile'
+  File.open('./Gemfile', "w") do |f|
+    f.puts <<-GEMFILE
+      source 'http://rubygems.org'
+
+      gem 'rack', '1.1.0', :git => 'git://github.com/rails/rack.git'
+      gem 'rack-mount'
+      gem 'rack-test'
+      gem 'rails', '3.0.0.beta3', :git => 'git://github.com/rails/rails.git'
+
+      gem 'sqlite3-ruby', :require => 'sqlite3'
+
+    GEMFILE
+  end
+
+log 'collect the gems your application requires'
+    run('bundle install')
+
+log 'rm public/index.html'
+  inside('public') do
+    run('rm index.html')
+  end
+
